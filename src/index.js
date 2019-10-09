@@ -117,6 +117,7 @@ class DivX extends React.Component {
       const needRealDiv = onOuterClick || onResize || Object.keys(realDivProps).length > 0;
 
       return needRealDiv ? (
+      // eslint-disable-next-line react/jsx-props-no-spreading
         <div ref={this.setRef} {...realDivProps} style={fullArea ? fullAreaStyle : undefined}>
           {children}
         </div>

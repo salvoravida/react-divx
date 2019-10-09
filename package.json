@@ -1,11 +1,13 @@
 {
   "name": "react-divx",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "description": "react-divx",
   "main": "lib/index.js",
-  "module": "src/index.js",
+  "module": "lib/index.es.js",
   "scripts": {
-    "compile": "cross-env NODE_ENV=production babel src --out-dir lib",
+    "compileEs6": "cross-env NODE_ENV=es6 babel src/index.js -o lib/index.es.js",
+    "compileEs5": "cross-env NODE_ENV=es5 babel src/index.js -o lib/index.js",
+    "compile": "npm run compileEs5 && npm run compileEs6",
     "prepublish": "npm run compile"
   },
   "repository": {
@@ -25,40 +27,49 @@
   },
   "homepage": "https://github.com/salvoravida/react-divx#readme",
   "dependencies": {
-    "prop-types": "^15.7.2",
-    "hoist-non-react-statics": "^3.3.0",
-    "tiny-invariant": "^1.0.4"
+    "prop-types": "15.7.2"
   },
   "peerDependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.4.0",
-    "@babel/plugin-proposal-class-properties": "^7.4.0",
-    "@babel/preset-env": "^7.4.2",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.5",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "cross-env": "^5.2.0",
-    "eslint": "^5.16.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-defaults": "^9.0.0",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.12.4",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "babel-eslint": "10.0.3",
+    "@babel/cli": "7.6.3",
+    "@babel/core": "7.6.3",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/preset-env": "7.6.3",
+    "@babel/preset-react": "7.6.3",
+    "babel-loader": "8.0.6",
+    "cross-env": "6.0.3",
+    "eslint": "6.5.1",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-config-defaults": "9.0.0",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-react": "7.16.0",
+    "react": "16.10.2",
+    "react-dom": "16.10.2"
   },
   "babel": {
-    "presets": [
-      "@babel/preset-env",
-      "@babel/preset-react"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties"
-    ]
+    "env": {
+      "es5": {
+        "presets": [
+          "@babel/preset-env",
+          "@babel/preset-react"
+        ],
+        "plugins": [
+          "@babel/plugin-proposal-class-properties"
+        ]
+      },
+      "es6": {
+        "presets": [
+          "@babel/preset-react"
+        ],
+        "plugins": [
+          "@babel/plugin-proposal-class-properties"
+        ]
+      }
+    }
   }
 }
